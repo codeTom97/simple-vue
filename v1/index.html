@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简易的MVVM</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ name }}</h1>
+    <input type="text" v-model="text">
+    <h2>{{ text }}</h2>
+    <button v-on:click="handleButton">点击修改</button>
+  </div>
+  <script src="./observer.js"></script>
+  <script src="./watcher.js"></script>
+  <script src="./compile.js"></script>
+  <script src="./index.js"></script>
+  <script>
+    let selfvue = new SelfVue({
+      el: '#app',
+      data: {
+        name: 'hello world',
+        text: 'hello world2'
+      },
+      mounted() {
+        window.setTimeout(() => {
+          this.name = 'name被改变了'
+        }, 1000);
+      },
+      methods: {
+        handleButton(e) {
+          this.name = '修改Name了'
+        }
+      },
+    });
+
+  </script>
+</body>
+</html>
